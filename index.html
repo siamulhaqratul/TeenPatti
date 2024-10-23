@@ -55,8 +55,8 @@
     </script>
 </head>
 <body style="text-align: center; padding: 0; border: 0; margin: 0;">
-    <canvas id="unity-canvas" width=540 height=576 style="width: 540px; height: 576px; background: url('Build/teen.jpg') center / cover"></canvas>
-    <script src="Build/teen.loader.js"></script>
+    <canvas id="unity-canvas" width=540 height=576 style="width: 540px; height: 576px; background: url('Build/t1.jpg') center / cover"></canvas>
+    <script src="Build/t1.loader.js"></script>
     <script>
         if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
             // Mobile device style: fill the whole browser client area with the game canvas:
@@ -74,9 +74,9 @@
         }
 
         createUnityInstance(document.querySelector("#unity-canvas"), {
-            dataUrl: "Build/teen.data",
-            frameworkUrl: "Build/teen.framework.js",
-            codeUrl: "Build/teen.wasm",
+            dataUrl: "Build/t1.data",
+            frameworkUrl: "Build/t1.framework.js",
+            codeUrl: "Build/t1.wasm",
             streamingAssetsUrl: "StreamingAssets",
             companyName: "DefaultCompany",
             productName: "TeenPatti",
