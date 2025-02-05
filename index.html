@@ -1,41 +1,99 @@
 <!DOCTYPE html>
 <html lang="en-us">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity Web Player | TeenPattiHabibi</title>
-  </head>
-  <body style="text-align: center; padding: 0; border: 0; margin: 0;">
-    <canvas id="unity-canvas" width=550 height=615 tabindex="-1" style="width: 550px; height: 615px; background: url('Build/t1.jpg') center / cover"></canvas>
-    <script src="Build/t1.loader.js"></script>
+    <title>Unity WebGL Player | TeenPatti</title>
     <script>
-      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-        // Mobile device style: fill the whole browser client area with the game canvas:
-        var meta = document.createElement('meta');
-        meta.name = 'viewport';
-        meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
-        document.getElementsByTagName('head')[0].appendChild(meta);
+        // Function to notify Unity of the minimize/restore state and connection status
+        function sendEventToUnity(eventType) {
+            console.log("Sending event to Unity: " + eventType);
+            var unityInstance = window.unityInstance;
+            if (unityInstance) {
+        try {
+            // Send the event to both handlers  
+            unityInstance.SendMessage('MinimizeRestoreHandler', 'OnBrowserMinimizeRestore', eventType);
+        } catch (error) {
+            console.log("Failed to send message to Unity: ", error);
+        }
+    } else {
+        console.log("Unity instance not found.");
+    }
+        }
 
-        var canvas = document.querySelector("#unity-canvas");
-        canvas.style.width = "100%";
-        canvas.style.height = "100%";
-        canvas.style.position = "fixed";
+        // Detect when the page becomes visible or hidden
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                sendEventToUnity('minimize');
+            } else {
+                sendEventToUnity('restore');
+            }
+        });
 
-        document.body.style.textAlign = "left";
-      }
+        // Detect when the browser window loses or gains focus
+        // window.addEventListener('blur', function() {
+        //     sendEventToUnity('minimize');
+        // });
 
-      createUnityInstance(document.querySelector("#unity-canvas"), {
-        arguments: [],
-        dataUrl: "Build/t1.data",
-        frameworkUrl: "Build/t1.framework.js",
-        codeUrl: "Build/t1.wasm",
-        streamingAssetsUrl: "StreamingAssets",
-        companyName: "DefaultCompany",
-        productName: "TeenPattiHabibi",
-        productVersion: "1.0",
-        // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
-        // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
-      });
+        // window.addEventListener('focus', function() {
+        //     sendEventToUnity('restore');
+        // });
+
+        // Detect when the page is hidden or shown
+        window.addEventListener('pagehide', function() {
+            sendEventToUnity('minimize');
+        });
+
+        window.addEventListener('pageshow', function() {
+            sendEventToUnity('restore');
+        });
+
+        // Detect online and offline status
+        window.addEventListener('online', function() {
+            sendEventToUnity('online');
+        });
+
+        window.addEventListener('offline', function() {
+            sendEventToUnity('offline');
+        });
+
     </script>
-  </body>
+</head>
+<body style="text-align: center; padding: 0; border: 0; margin: 0;">
+    <canvas id="unity-canvas" width=540 height=615 style="width: 540px; height: 615px; background: url('Build/t11.jpg') center / cover"></canvas>
+    <script src="Build/t11.loader.js"></script>
+    <script>
+        if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+            // Mobile device style: fill the whole browser client area with the game canvas:
+            var meta = document.createElement('meta');
+            meta.name = 'viewport';
+            meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
+            document.getElementsByTagName('head')[0].appendChild(meta);
+
+            var canvas = document.querySelector("#unity-canvas");
+            canvas.style.width = "100%";
+            canvas.style.height = "100%";
+            canvas.style.position = "fixed";
+
+            document.body.style.textAlign = "left";
+        }
+
+        createUnityInstance(document.querySelector("#unity-canvas"), {
+            dataUrl: "Build/t11.data",
+            frameworkUrl: "Build/t11.framework.js",
+            codeUrl: "Build/t11.wasm",
+            streamingAssetsUrl: "StreamingAssets",
+            companyName: "DefaultCompany",
+            productName: "TeenPatti",
+            productVersion: "1.0",
+            // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
+            // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
+        }).then((unityInstance) => {
+            window.unityInstance = unityInstance;
+            console.log("Unity instance created.");
+        }).catch((message) => {
+            console.error(message);
+        });
+    </script>
+</body>
 </html>
