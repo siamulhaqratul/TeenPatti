@@ -7,14 +7,14 @@
     <script>
         // Function to notify Unity of the minimize/restore state and connection status
         function sendEventToUnity(eventType) {
-            console.log("Sending event to Unity: " + eventType);
+           // console.log("Sending event to Unity: " + eventType);
             var unityInstance = window.unityInstance;
             if (unityInstance) {
         try {
             // Send the event to both handlers  
             unityInstance.SendMessage('MinimizeRestoreHandler', 'OnBrowserMinimizeRestore', eventType);
         } catch (error) {
-            console.log("Failed to send message to Unity: ", error);
+            //console.log("Failed to send message to Unity: ", error);
         }
     } else {
         console.log("Unity instance not found.");
@@ -90,9 +90,9 @@
             // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
         }).then((unityInstance) => {
             window.unityInstance = unityInstance;
-            console.log("Unity instance created.");
+           // console.log("Unity instance created.");
         }).catch((message) => {
-            console.error(message);
+           // console.error(message);
         });
     </script>
 </body>
