@@ -159,54 +159,6 @@
   </div>
   <script src="Build/t3.loader.js"></script>
   <script>
-    // Function to notify Unity of the minimize/restore state and connection status
-    function sendEventToUnity(eventType) {
-        //console.log("Sending event to Unity: " + eventType);
-        var unityInstance = window.unityInstance;
-        if (unityInstance) {
-            unityInstance.SendMessage('MinimizeRestoreHandler', 'OnBrowserMinimizeRestore', eventType);
-        } else {
-          // console.log("Unity instance not found.");
-        }
-    }
-
-    // Detect when the page becomes visible or hidden
-    document.addEventListener('visibilitychange', function() {
-        if (document.hidden) {
-            sendEventToUnity('minimize');
-        } else {
-            sendEventToUnity('restore');
-        }
-    });
-
-    // Detect when the browser window loses or gains focus
-    // window.addEventListener('blur', function() {
-    //     sendEventToUnity('minimize');
-    // });
-
-     window.addEventListener('focus', function() {
-         sendEventToUnity('restore');
-     });
-
-    // Detect when the page is hidden or shown
-    window.addEventListener('pagehide', function() {
-        sendEventToUnity('minimize');
-    });
-
-    window.addEventListener('pageshow', function() {
-        sendEventToUnity('restore');
-    });
-
-    // Detect online and offline status
-    window.addEventListener('online', function() {
-        sendEventToUnity('online');
-    });
-
-    window.addEventListener('offline', function() {
-        sendEventToUnity('offline');
-    });
-</script>
-  <script>
     var buildUrl = "Build";
     var loaderUrl = buildUrl + "/t3.loader.js";
     var config = {
@@ -239,6 +191,7 @@
       }).then(function(unityInstance) {
         unityGame = unityInstance;
         loadingContainer.classList.add("finished");
+        window.unityInstance = unityInstance;
       }).catch(function(message) {
         alert(message);
       });
