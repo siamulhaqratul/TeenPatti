@@ -17,7 +17,7 @@ function setupConsoleLogPipe() {
   console.error = (message) => { handleLog(message, 'error', defaultConsoleError); };
 
 
-  handleLog = (message, logLevel, consoleLogFunction) => {
+  function handleLog(message, logLevel, consoleLogFunction) {
     if (typeof message === 'string') {
       // Only parse messages that are actual strings
       parseMessageAndLog(message, logLevel, consoleLogFunction);
@@ -27,7 +27,7 @@ function setupConsoleLogPipe() {
     }
   };
 
-  parseMessageAndLog = (message, logLevel, consoleLogFunction) => {
+  function parseMessageAndLog(message, logLevel, consoleLogFunction) {
     let styledTextParts = parseUnityRichText(message);
     let consoleText = '';
     let consoleStyle = [];
