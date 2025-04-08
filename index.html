@@ -5,9 +5,9 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Start loading assets right away, to have them (partly) loaded already when they are requested -->
-  <link rel="preload" href="Build/t9.data.unityweb" as="fetch" type="application/octet-stream" crossorigin>
-  <link rel="preload" href="Build/t9.framework.js.unityweb" as="script">
-  <link rel="preload" href="Build/t9.wasm.unityweb" as="fetch" type="application/wasm" crossorigin>
+  <link rel="preload" href="Build/t1.data.unityweb" as="fetch" type="application/octet-stream" crossorigin>
+  <link rel="preload" href="Build/t1.framework.js.unityweb" as="script">
+  <link rel="preload" href="Build/t1.wasm.unityweb" as="fetch" type="application/wasm" crossorigin>
   <title>TeenPatti</title>
   <style>
     * {
@@ -157,14 +157,14 @@
       <div id="unity-loading-bar-inner"></div>
     </div>
   </div>
-  <script src="Build/t9.loader.js"></script>
+  <script src="Build/t1.loader.js"></script>
   <script>
     var buildUrl = "Build";
-    var loaderUrl = buildUrl + "/t9.loader.js";
+    var loaderUrl = buildUrl + "/t1.loader.js";
     var config = {
-      dataUrl: buildUrl + "/t9.data.unityweb",
-      frameworkUrl: buildUrl + "/t9.framework.js.unityweb",
-      codeUrl: buildUrl + "/t9.wasm.unityweb",
+      dataUrl: buildUrl + "/t1.data.unityweb",
+      frameworkUrl: buildUrl + "/t1.framework.js.unityweb",
+      codeUrl: buildUrl + "/t1.wasm.unityweb",
       streamingAssetsUrl: "StreamingAssets",
       companyName: "Khalifa",
       productName: "TeenPatti",
