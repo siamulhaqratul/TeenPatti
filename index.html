@@ -5,9 +5,15 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Start loading assets right away, to have them (partly) loaded already when they are requested -->
+  <!-- Preload Unity files -->
   <link rel="preload" href="Build/test8.data.unityweb" as="fetch" type="application/octet-stream" crossorigin>
   <link rel="preload" href="Build/test8.framework.js.unityweb" as="script">
   <link rel="preload" href="Build/test8.wasm.unityweb" as="fetch" type="application/wasm" crossorigin>
+  <link rel="preload" href="Build/test8.loader.js" as="script">
+  
+  <!-- Preload UI assets -->
+  <link rel="preload" href="logo.svg" as="image">
+  <link rel="preload" href="./pretty-console.js" as="script">
   <title>TeenPatti</title>
   <style>
     * {
@@ -46,8 +52,9 @@
 
     #unity-loading-container {
       position: absolute;
-      left: 0px;
-      top: 0px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
       width: 550px;
       height: 615px;
       background-color: #fff;
