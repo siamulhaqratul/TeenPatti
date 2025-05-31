@@ -5,9 +5,9 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Start loading assets right away, to have them (partly) loaded already when they are requested -->
-  <link rel="preload" href="Build/test4.data.unityweb" as="fetch" type="application/octet-stream" crossorigin>
-  <link rel="preload" href="Build/test4.framework.js.unityweb" as="script">
-  <link rel="preload" href="Build/test4.wasm.unityweb" as="fetch" type="application/wasm" crossorigin>
+  <link rel="preload" href="Build/test5.data.unityweb" as="fetch" type="application/octet-stream" crossorigin>
+  <link rel="preload" href="Build/test5.framework.js.unityweb" as="script">
+  <link rel="preload" href="Build/test5.wasm.unityweb" as="fetch" type="application/wasm" crossorigin>
   <title>TeenPatti</title>
   <style>
     * {
@@ -157,19 +157,29 @@
       <div id="unity-loading-bar-inner"></div>
     </div>
   </div>
-  <script src="Build/test4.loader.js"></script>
+  <script src="Build/test5.loader.js"></script>
   <script>
     var buildUrl = "Build";
-    var loaderUrl = buildUrl + "/test4.loader.js";
+    var loaderUrl = buildUrl + "/test5.loader.js";
     var config = {
-      dataUrl: buildUrl + "/test4.data.unityweb",
-      frameworkUrl: buildUrl + "/test4.framework.js.unityweb",
-      codeUrl: buildUrl + "/test4.wasm.unityweb",
+      dataUrl: buildUrl + "/test5.data.unityweb",
+      frameworkUrl: buildUrl + "/test5.framework.js.unityweb",
+      codeUrl: buildUrl + "/test5.wasm.unityweb",
       streamingAssetsUrl: "StreamingAssets",
       companyName: "Khalifa",
       productName: "TeenPatti",
       productVersion: "1.0",
     };
+    createUnityInstance(document.querySelector("#unity-canvas"), {
+      arguments: [],
+      dataUrl: buildUrl + "/test5.data.unityweb",
+      frameworkUrl: buildUrl + "/test5.framework.js.unityweb",
+      codeUrl: buildUrl + "/test5.wasm.unityweb",
+      streamingAssetsUrl: "StreamingAssets",
+      companyName: "Khalifa",
+      productName: "TeenPatti",
+      productVersion: "1.0",
+    });
 
     var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     if(isMobile) {
